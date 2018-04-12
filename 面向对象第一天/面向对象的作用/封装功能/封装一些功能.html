@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <div>传智播客</div>
+    <div>传智播客</div>
+    <div>传智播客</div>
+    <div>传智播客</div>
+    <div>传智播客</div>
+</body>
+</html>
+<script>
+    var $$=function(){};
+    $$.prototype.$id=function(id){
+        return document.getElementById(id);
+    }
+    $$.prototype.$tag=function(tag){
+        return document.getElementsByTagName(tag);
+    }
+
+    var $$=new $$();
+    var btn=$$.$id('btn');
+    var divs=$$.$tag('div');
+    btn.onclick=function(){
+        for(var i=0;i<divs.length;i++){
+            divs[i].style.background='red';
+        }
+    }
+</script>
+
+<!-- 我眼里的封装：创建构造函数，给构造函数添加方法，创建一个构造函数的实例对象，通过对象调用被封装的方法 -->

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function Sharp(name){
+        this.name=name;
+    }
+    Sharp.prototype={
+        getName:function(){
+            return this.name
+        },
+        parimeter:function(){
+            return 100; //会被后面的方法重载
+        }
+    }
+
+//  新增一个矩形
+    function Rectangle(name,width,height){
+        Sharp.call(this,name);
+        this.name='rectangle';
+        this.width=width;
+        this.height=height;
+    }
+    Rectangle.prototype=new Sharp();
+    Rectangle.prototype.parimeter=function(){
+        return (this.width+this.height)*2;
+    }
+    // 新增一个圆形
+    function Circle(name,radius){
+        Sharp.call(this,name);
+        this.name='circle';
+        this.radius=radius;
+    }
+    Circle.prototype=new Sharp();
+    Circle.prototype.parimeter=function(){
+        return 2*Math.PI*this.radius;
+    }
+
+    // 新增一个正方形
+    function Square(name,width){
+        Sharp.call(this,name);
+        this.name='square';
+        this.width=width;
+    }
+    Square.prototype=new Sharp();
+    Square.prototype.parimeter=function(){
+        return 4*this.width;
+    }
+    //使用对象 封装
+    function computezhouchang(obj){
+        alert(obj.getName()+"的周长为："+obj.parimeter());
+    }
+    var rectangle=new Rectangle("矩形",10,20);
+    computezhouchang(rectangle);
+</script>

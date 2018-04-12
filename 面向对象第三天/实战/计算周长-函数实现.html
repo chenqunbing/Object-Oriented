@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+</head>
+<body>
+    <script>
+        var rectangle={
+            name:'长方形',
+            shape:'rectangle',
+            width:12,
+            height:34
+        };
+        var square={
+            name:'正方形',
+            shape:'square',
+            width:12
+        };
+        var circle={
+            name:'圆形',
+            shape:'circle',
+            radius:12
+        };
+        function conputeParimeter(obj){
+            var result;
+            switch(obj.shape){
+                case 'rectangle':
+                    result=(obj.width+obj.height)*2;
+                break;
+                case 'square':
+                    result=obj.width*4;
+                break;
+                case 'circle':
+                    result=2*Math.PI*obj.radius;
+                break;
+                default:
+                    result=-1;
+            }
+           return obj.shape+'的周长是：'+result;
+        }
+
+    console.log(conputeParimeter(square));//
+    </script>
+</body>
+</html>

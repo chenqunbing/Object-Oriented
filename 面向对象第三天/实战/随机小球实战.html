@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <script src="index.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    var canvas=$$.$id('container');
+    function Box(){
+        //实现方式：随机生成一个span，当移动到边界就移动到别的位置
+        this.dom=document.createElement('span');
+        this.x=300;
+        this.y=300;
+        // 物体运动偏移量
+        this.vx=$$.random(1,12);
+        this.vy=$$.random(1,12);
+        this.timerBar=null;
+    }
+    Box.prototype={
+        _LoopLife:function(){
+            var that=this;
+            that.timerBar=setInterval(function(){
+                that._draw();
+            },39)
+        },
+        add:function(){
+            this._draw();
+            canvas.appendChild(this.dom);
+            this._LoopLife();
+        },
+        _draw:function(){
+            this.x+=this.vx;
+            this.y+=this.vy;
+            if(this.x>550){
+                this.x=550;
+                this.vx=this.vx*(-1);
+            }
+            if(this.y>350){
+                this.y=350;
+                this.vy=this.vy*(-1);
+            }
+            this.dom.style.left=this.x+'px';
+            this.dom.style.top=this.y+'px';
+        }
+    }
+
+    function GreenBox(){
+        Box.call(this);
+        this.dom.style.background='green';
+        this.dom.innerHTML='小球';
+        this.dom.style.lineHeight='50px';
+        this.dom.style.color='#fff';
+        this.dom.style.fontWeight='bold';
+        this.dom.style.textAlign='center';
+    }
+    GreenBox.prototype=new Box();
+
+    function CurcleBox(){
+        Box.call(this);
+        this.dom.style.borderRadius='50px';
+    }
+    CurcleBox.prototype=new Box();
+
+    function OrangeBox(){
+        Box.call(this);
+        this.dom.style.background='orange';
+        this.dom.style.borderRadius='50px';
+    }
+    OrangeBox.prototype=new Box();
+
+    var AllBox=[Box,GreenBox,CurcleBox,OrangeBox];
+    setInterval(function(){
+        var box=new AllBox[$$.random(0,4)];
+        box.add();
+    },1000)
+</script>

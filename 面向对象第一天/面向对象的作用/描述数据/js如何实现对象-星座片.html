@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="ICD.js"></script>
+    <script type="text/javascript">
+         //   我们看看如何使用面向对象开发星座场景  - 定义一个抽象星座对象 -- 抽象 --
+        function Xingzuo(name,time,description,match){
+            this.name=name;
+            this.time=time;
+            this.description=description;
+            this.match=match;
+        }
+        Xingzuo.prototype={
+            getDescription:function(){
+                return this.description;
+            }
+        }
+         //    实例化每个对象 -- 具体  -- 对象必须实例化才能使用
+        var shizi = new Xingzuo('狮子座','7.23-8.22','猛男，靓女','射手');
+        shizi.description = '猛男，靓女';
+        var baiyang = new Xingzuo('白羊座','3.21-4.19');
+        baiyang.description = '猛男，靓女';
+        var jinniu = new Xingzuo('金牛座','4.20-5.20');
+        jinniu.description = '猛男，靓女';
+        var juxie = new Xingzuo('巨蟹座','7.23-8.22','猛男，靓女','射手');
+        var chunv = new Xingzuo('处女座','3.21-4.19');
+        var sheshou = new Xingzuo('射手座','4.20-5.20');
+        var tiancheng = new Xingzuo('天秤座','4.20-5.20');
+        var moxie = new Xingzuo('摩羯座','4.20-5.20');
+        var shuiping = new Xingzuo('水瓶座','4.20-5.20');
+        var shuangyu = new Xingzuo('双鱼座','4.20-5.20');
+        var tianxie = new Xingzuo('天蝎座','4.20-5.20');
+
+         //   数据结构 --  数组中的元素是一个对象
+        var data=[shizi,baiyang,jinniu,juxie,chunv,sheshou,tiancheng,moxie,shuiping,shuangyu,tianxie];
+
+    </script>
+    <script>
+        $(function(){
+             //定义一个对象封装单个星座对应的各种操作 -- 每个星座都会针对data num进行编程
+            var XingzuoModule=function(data,num){
+                this.data=data;
+                 //定义一个属性保存当前星座对应的坐标
+                this.num=num;
+                this.dom=$.create('div').addClass('item num-'+num);
+                this.init();
+            }
+            XingzuoModule.prototype={
+                init:function(){
+                    this.create();
+                    this.bindEvent();
+                },
+                create:function(){
+                    var html='<div class="image"></div><div class="description"><p class="name">@(name)</p><p class="time">@(time)</p><div class="mask"><div></div>';
+                    this.dom.html($.formateString(html, this.data), true).appendTo('.xingzuo');
+                },
+                bindEvent:function(){
+                    var that=this;
+                    that.dom.on('click',function(e){
+                        that.dom.toggleClass('selected');
+                        alert(data[that.num].getDescription())
+                    }).on('mouseenter',function(e){
+                        that.dom.addClass('is-hover');
+                    }).on('mouseleave',function(e){
+                        that.dom.removeClass('is-hover');
+                    })
+                }
+            }
+
+            //依次遍历，实例化对象
+            for(var i=0;i<data.length;i++){
+                new XingzuoModule(data[i],i);
+            }
+
+
+        })
+    </script>
+</head>
+<body>
+    <img class="logo" src="baidu/logo_white.png" alt='' >
+    <p class="links">
+        <a href="http://www.baidu.com" target="_blank">新闻</a>
+        <a href="http://www.baidu.com" target="_blank">网页</a>
+        <a href="http://www.baidu.com" target="_blank">贴吧</a>
+        <a href="http://www.baidu.com" target="_blank">知道</a>
+        <a href="http://www.baidu.com" target="_blank">音乐</a>
+        <a href="http://www.baidu.com" target="_blank">图片</a>
+        <a href="http://www.baidu.com" target="_blank">视频</a>
+        <a href="http://www.baidu.com" target="_blank">地图</a>
+        <a href="http://www.baidu.com" target="_blank">百科</a>
+        <a href="http://www.baidu.com" target="_blank">文库</a>
+        <a href="http://www.baidu.com" target="_blank">更多&gt;&gt;</a>
+    </p>
+    <div class="search">
+        <input type="text" >
+        <button>百度一下</button>
+    </div>
+    <div class="container">
+        <div class="menu">
+            <span>导航</span>
+            <span>音乐</span>
+            <span>新闻</span>
+            <span class="choose">星座</span>
+        </div>
+        <div class="card">
+            <div class="xingzuo"></div>
+        </div>
+        
+    </div>
+</body>
+</html>

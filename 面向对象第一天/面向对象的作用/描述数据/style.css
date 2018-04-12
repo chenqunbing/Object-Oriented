@@ -1,0 +1,124 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    border: 0;
+    text-align: center;
+}
+body{
+    background: url(baidu/bg.jpg);
+    background-size: cover;
+}
+.logo{
+    width: 200px;
+    margin-top: 30px;
+}
+.links{
+    width: 740px;
+    margin: 0 auto;
+}
+.links a{
+    color: white;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.search{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.search input,.search button{
+    width: 545px;
+    height: 45px;
+}
+.search button{
+    width: 100px;
+}
+.container{
+    width: 910px;
+}
+.container .menu{
+    width: 80px;
+    height: 318px;
+    float: left;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+} 
+.container .menu span{
+    width: 80px;
+    height: 35px;
+    display: block;
+    color: white;
+    margin-top: 10px;
+}
+.container .menu span.choose{
+    background: rgba(255,255,255,0.6) url(baidu/menu.png);
+}
+.container .card{
+    float: right;
+    width: 813px;
+    height: 318px;
+    background: rgba(255,255,255,0.6) url(baidu/xingzuo.png);
+}
+.xingzuo{
+    padding: 20px;
+}
+
+/* 给后面使用js创建的标签添加样式 */
+.item{
+    width: 170px;
+    height: 52px;
+    float: left;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.image{
+    float: left;
+    background: url(xingzuo/xingzuo.png) no-repeat 0 52px;
+    width: 52px;
+    height: 52px;
+}
+.description{
+    width: 115px;
+    height: 48px;
+    border: 2px solid #f1f1f1;
+    border-left: none;
+}
+.num-0 .image{
+    background-position: 0 0;
+}
+.num-1 .image{
+    background-position: 0 -52px;
+}
+.num-2 .image{
+    background-position: 0 -104px;
+}
+.num-3 .image{
+    background-position: 0 -156px;
+}
+.num-4 .image{
+    background-position: 0 -208px;
+}
+.num-5 .image{
+    background-position: 0 -260px;
+}
+.num-6 .image{
+    background-position: 0 -312px;
+}
+.num-7 .image{
+    background-position: 0 -364px;
+}
+.num-8 .image{
+    background-position: 0 -416px;
+}
+.num-9 .image{
+    background-position: 0 -468px;
+}
+.num-10 .image{
+    background-position: 0 -520px;
+}
+
+.is-hover .description{
+    border-color: #389CFF;
+    border-width: 2px;
+}
